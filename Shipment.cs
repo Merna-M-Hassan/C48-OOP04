@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace Assignment_8_C__OOP
 {
-    internal abstract class Shipment : ITrackable
+    internal abstract class Shipment : ITrackable, IInsurable
     {
         // Part 2) 1) Change the Shipment class into an abstract class. It should still contain, with all validation rules kept
 
@@ -16,7 +16,7 @@ namespace Assignment_8_C__OOP
         private decimal deliveryFee;
         private DeliveryAddress destination;
         private string trackingStatus;
-         
+
         //Constructors
 
         //The first constructor.
@@ -101,6 +101,12 @@ namespace Assignment_8_C__OOP
             get;
         }
 
+        //IInsurable =>  decimal CalculateInsurance();
+        public virtual decimal CalculateInsurance()
+        {
+            return EstimatedCost;
+        }
+
         // trackingStatus property 
         public string TrackingStatus
         {
@@ -146,6 +152,8 @@ namespace Assignment_8_C__OOP
                 weight += packingWeight;
             }
         }
+
+
 
         //PrintShipment(): prints all shipment information, including the estimated cost.
         //Abstract Method: Print Shipment. Each shipment type prints its own information.

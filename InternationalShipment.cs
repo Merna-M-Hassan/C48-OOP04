@@ -40,6 +40,12 @@ namespace Assignment_8_C__OOP
             get => DeliveryFee + (Weight * 5) + CustomsFee;
         }
 
+        //IInsurable =>  decimal CalculateInsurance();
+        public override decimal CalculateInsurance()
+        {
+            return EstimatedCost * 0.12m;
+        }
+
         // Overrides PrintShipment().
         public override void PrintShipment()
         {

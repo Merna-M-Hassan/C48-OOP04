@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assignment_8_C__OOP
 {
-    internal class StandardShipment : Shipment
+    internal class StandardShipment : Shipment 
     {
 
         //Every derived class calls the base Shipment constructor with base(...) instead of repeating its initialization code.
@@ -24,6 +24,12 @@ namespace Assignment_8_C__OOP
         public override decimal EstimatedCost
         {
             get => DeliveryFee + (Weight * 5);
+        }
+
+        //IInsurable =>  decimal CalculateInsurance();
+        public override decimal CalculateInsurance()
+        {
+            return EstimatedCost * 0.05m;
         }
 
         // Overrides PrintShipment().
