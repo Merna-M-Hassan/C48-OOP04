@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace Assignment_8_C__OOP
 {
-    internal abstract class Shipment
+    internal abstract class Shipment : ITrackable
     {
         // Part 2) 1) Change the Shipment class into an abstract class. It should still contain, with all validation rules kept
 
@@ -15,6 +15,7 @@ namespace Assignment_8_C__OOP
         private decimal weight;
         private decimal deliveryFee;
         private DeliveryAddress destination;
+        private string trackingStatus;
          
         //Constructors
 
@@ -29,6 +30,7 @@ namespace Assignment_8_C__OOP
             weight = 1;
             deliveryFee = 50;
             destination = new DeliveryAddress("Not specifies yet", "Not specifies yet", 0);
+            trackingStatus = "Ready";
         }
 
         //The second constructor receives trackingCode, description, weight, deliveryFee, and destination.
@@ -47,6 +49,8 @@ namespace Assignment_8_C__OOP
             deliveryFee = DeliverFee > 0 ? DeliverFee : 2;
 
             destination = Destination;
+
+            trackingStatus = "Ready";
         }
 
         //TrackingCode cannot be null, empty, or whitespace.
@@ -96,6 +100,26 @@ namespace Assignment_8_C__OOP
         {
             get;
         }
+
+        // trackingStatus property 
+        public string TrackingStatus
+        {
+            get => trackingStatus;
+            set => trackingStatus = value;
+        }
+
+        //Gets the current tracking status of the shipment.
+        public virtual string GetTrackingStatus()
+        {
+            return $"Shipment {TrackingCode} is {TrackingStatus}";
+        }
+
+        // Updates the tracking status.
+        public void UpdateTrackingStatus(string status)
+        {
+            TrackingStatus = status;
+        }
+
 
         //UpdateDeliveryFee(decimal newFee): updates the fee only when newFee is greater than 0.
         public void UpdateDeliveryFee(decimal newFee)
