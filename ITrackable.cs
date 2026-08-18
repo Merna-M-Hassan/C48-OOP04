@@ -7,5 +7,6 @@ namespace Assignment_8_C__OOP
     internal interface ITrackable
     {
         string GetTrackingStatus();
+
     }
 }
