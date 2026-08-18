@@ -52,6 +52,88 @@
              * No, a class can not inherit from multiple abstract classes. Yes, can implement multiple interface, because interface supports multiple implementation.
              */
             #endregion
+
+            #region Q8)
+            Console.WriteLine("Delivery Center");
+            Console.WriteLine("===========================================");
+            Console.WriteLine();
+
+            // Create addresses
+            DeliveryAddress addr1 = new DeliveryAddress("Cairo", "Tahrir Street", 15);
+            DeliveryAddress addr2 = new DeliveryAddress("Alexandria", "Corniche", 20);
+            DeliveryAddress addr3 = new DeliveryAddress("Giza", "Pyramids Street", 10);
+
+            // a. Create one StandardShipment.
+            StandardShipment standard = new StandardShipment("SH001", "Laptop", 3, 80, addr1);
+
+            // b. Create one ExpressShipment.
+            ExpressShipment express = new ExpressShipment("SH002", "Mobile Phone", 2, 60, addr2, 30);
+
+            // c. Create one InternationalShipment.
+            InternationalShipment international = new InternationalShipment("SH003", "Television", 8, 120, addr3, "Germany", 100);
+
+            // d. Add all shipments to the DeliveryCenter.
+            DeliveryCenter center = new DeliveryCenter("Main Center");
+            center.AddShipment(standard);
+            center.AddShipment(express);
+            center.AddShipment(international);
+
+            // e. Print all shipment details.
+            Console.WriteLine("Standard Shipment");
+            Console.WriteLine("---");
+            Console.WriteLine($"Tracking Code : {standard.TrackingCode}");
+            Console.WriteLine($"Description  : {standard.Description}");
+            Console.WriteLine($"Estimated Cost: {standard.EstimatedCost} EGP");
+            Console.WriteLine();
+
+            Console.WriteLine("Express Shipment");
+            Console.WriteLine("---");
+            Console.WriteLine($"Tracking Code : {express.TrackingCode}");
+            Console.WriteLine($"Extra Fee    : {express.ExtraFee} EGP");
+            Console.WriteLine($"Estimated Cost: {express.EstimatedCost} EGP");
+            Console.WriteLine();
+
+            Console.WriteLine("International Shipment");
+            Console.WriteLine("---");
+            Console.WriteLine($"Tracking Code    : {international.TrackingCode}");
+            Console.WriteLine($"Destination Country   : {international.DestinationCountry}");
+            Console.WriteLine($"Estimated Cost    : {international.EstimatedCost} EGP");
+            Console.WriteLine();
+
+            // f. Print the tracking status of every shipment.
+            Console.WriteLine("Tracking Status");
+            Console.WriteLine("---");
+            Console.WriteLine(standard.GetTrackingStatus());
+            Console.WriteLine(express.GetTrackingStatus());
+            Console.WriteLine(international.GetTrackingStatus());
+            Console.WriteLine();
+
+            // g. Print the insurance cost of every shipment.
+            Console.WriteLine("Insurance");
+            Console.WriteLine("---");
+            Console.WriteLine($"Standard Shipment Insurance : {standard.CalculateInsurance()} EGP");
+            Console.WriteLine($"Express Shipment Insurance : {express.CalculateInsurance()} EGP");
+            Console.WriteLine($"International Shipment Insurance : {international.CalculateInsurance()} EGP");
+            Console.WriteLine();
+
+            // h. Store the shipment objects in an ITrackable[] array and print their tracking statuses.
+            ITrackable[] trackables = new ITrackable[]
+            {
+                standard,
+                express,
+                international
+            };
+
+            // i. Store the shipment objects in an IInsurable[] array and print their insurance values.
+            IInsurable[] insurables = new IInsurable[]
+            {
+                standard,
+                express,
+                international
+            };
+
+            Console.WriteLine("Interface Polymorphism Demonstrated Successfully.");
+            #endregion
         }
     }
 }
