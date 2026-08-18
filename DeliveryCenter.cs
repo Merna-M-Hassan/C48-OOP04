@@ -19,7 +19,7 @@ namespace Assignment_8_C__OOP
         {
             //The center can store up to 20 shipments.
             shipments = new Shipment[20];
-            CenterName = centerName;
+            this.centerName = CenterName;
             driver = null;
         }
 
@@ -157,6 +157,90 @@ namespace Assignment_8_C__OOP
                 Console.WriteLine($"Total shipments: {count} of {shipments.Length}");
             }
         }
+
+        //Prints tracking status for all shipments using ITrackable interface.
+        public void PrintTrackingStatuses()
+        {
+            Console.WriteLine($"--------{centerName} - Tracking Status ---------");
+            Console.WriteLine();
+
+            int count = 0;
+
+            foreach (Shipment shipment in shipments)
+            {
+                if (shipment != null)
+                {
+                    // Cast to ITrackable interface
+                    ITrackable trackable = shipment;
+                    Console.WriteLine($"{trackable.GetTrackingStatus()}");
+                    count++;
+                }
+            }
+
+            if (count == 0)
+            {
+                Console.WriteLine("Shipment are Empty............");
+            }
+            else
+            {
+                Console.WriteLine($"Total: {count} shipment(s) are tracked");
+            }
+
+            Console.WriteLine();
+        }
+
+        // Prints insurance costs for all shipments using IInsurable interface.
+        public void PrintInsurances()
+        {
+            Console.WriteLine($"------------- {centerName} -Insurance Cost----------");
+            Console.WriteLine();
+
+            int count = 0;
+            decimal totalInsurance = 0;
+
+            foreach (Shipment shipment in shipments)
+            {
+                if (shipment != null)
+                {
+                    // Cast to IInsurable interface
+                    IInsurable insurable = shipment;
+                    decimal insurance = insurable.CalculateInsurance();
+                    Console.WriteLine($"   {shipment.TrackingCode}: {insurance} EGP");
+                    totalInsurance += insurance;
+                    count++;
+                }
+
+                if (count == 0)
+                {
+                    Console.WriteLine("Shipments are Empty");
+                }
+                else
+                {
+                    Console.WriteLine($" Total Insurance: {totalInsurance} EGP for {count} shipment(s)");
+                }
+
+                Console.WriteLine();
+            }
+
+        }
+
+        // Prints both tracking statuses and insurance costs using both interfaces.
+        public int Count
+        {
+            get
+            {
+                int count = 0;
+                for (int i = 0; i < shipments.Length; i++)
+                {
+                    if (shipments[i] != null)
+                    {
+                        count++;
+                    }
+                }
+                return count;
+            }
+        }
+
 
 
     }
